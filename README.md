@@ -10,6 +10,9 @@ changes applied to original version https://github.com/azarai/spring-boot-interm
 4. [Eclipse Spring Tools getting started](https://o7planning.org/en/11723/understanding-spring-cloud-config-server-with-example)
 5. [GIT as config backend](https://dzone.com/articles/spring-cloud-config-series-part-2-git-backend)
 
+## config branch model
+1. [How to maintain different configurations for different feature branches](http://www.naturalprogrammer.com/spring-cloud-config-maintain-configuration-branches/)
+
 ## references
 1. [spring cloud github](https://github.com/spring-cloud)
 
