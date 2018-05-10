@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: commentstore
+  profiles:
+  	active: development
+  cloud:
+    config:
+      uri: http://localhost:${config.port:8888}
+      failFast: true
