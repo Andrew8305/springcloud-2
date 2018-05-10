@@ -41,6 +41,9 @@ public class CommentStoreApp {
 	@Value("${user.role}")
 	private String role;
 
+	@Value("${msg:Hello world - Config Server is not working..pelase check}")
+	private String msg;
+
 	/**
 	 * @param args
 	 */
@@ -67,6 +70,11 @@ public class CommentStoreApp {
 	@RequestMapping(value = "/whoami/{username}", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
 	public String whoami(@PathVariable("username") String username) {
 		return String.format("Hello! You're %s and you'll become a(n) %s...\n", username, role);
+	}
+
+	@RequestMapping("/msg")
+	public String getMsg() {
+		return this.msg;
 	}
 
 }
