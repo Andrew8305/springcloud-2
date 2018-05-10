@@ -12,12 +12,17 @@ changes applied to original version https://github.com/azarai/spring-boot-interm
 
 ## config branch model
 1. [How to maintain different configurations for different feature branches](http://www.naturalprogrammer.com/spring-cloud-config-maintain-configuration-branches/)
+2. [Read the 12 app specs about this](https://12factor.net/config)
+3. [spring io specs](http://cloud.spring.io/spring-cloud-static/spring-cloud-config/2.0.0.RC1/multi/multi_spring-cloud-config.html)
 
 ## references
 1. [spring cloud github](https://github.com/spring-cloud)
 
 ## building
 1. mvn clean install
+
+## running and loading the dev configurations
+1. mvn clean spring-boot:run -Dspring.cloud.config.label=dev
 
 ## verifiy config server
 1. java -jar target\spring-config-server-0.0.1-SNAPSHOT.jar
