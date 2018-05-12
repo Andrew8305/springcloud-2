@@ -53,6 +53,10 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<build>
+		<finalName>spring-config-server</finalName>
+	</build>
+
 	<repositories>
 		<repository>
 			<id>spring-milestones</id>

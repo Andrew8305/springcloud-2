@@ -80,6 +80,10 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<build>
+		<finalName>consumer</finalName>
+	</build>
+
 	<repositories>
 		<repository>
 			<id>spring-milestones</id>

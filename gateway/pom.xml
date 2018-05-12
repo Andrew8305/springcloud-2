@@ -42,6 +42,10 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<build>
+		<finalName>gateway</finalName>
+	</build>
+
 	<repositories>
 		<repository>
 			<id>spring-milestones</id>

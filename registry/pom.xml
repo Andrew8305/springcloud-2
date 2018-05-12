@@ -38,6 +38,10 @@
 		</dependencies>
 	</dependencyManagement>
 
+	<build>
+		<finalName>registry</finalName>
+	</build>
+
 	<repositories>
 		<repository>
 			<id>spring-milestones</id>
