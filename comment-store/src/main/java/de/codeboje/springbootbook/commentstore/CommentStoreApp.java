@@ -2,6 +2,8 @@ package de.codeboje.springbootbook.commentstore;
 
 import javax.servlet.Filter;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -38,6 +40,8 @@ import de.codeboje.springbootbook.logging.RequestContextLoggingFilter;
 @ImportResource(value = { "classpath*:legacy-context.xml" })
 @EnableEurekaClient
 public class CommentStoreApp {
+	
+	private static final Log log = LogFactory.getLog(CommentStoreApp.class);
 
 	@Value("${user.role}")
 	private String role;
@@ -70,11 +74,14 @@ public class CommentStoreApp {
 
 	@RequestMapping(value = "/whoami/{username}", method = RequestMethod.GET, produces = MediaType.TEXT_PLAIN_VALUE)
 	public String whoami(@PathVariable("username") String username) {
+		log.info("whoami called with " + username);
 		return String.format("Hello! You're %s and you'll become a(n) %s...\n", username, role);
 	}
 
 	@RequestMapping("/msg")
 	public String getMsg() {
+		log.info("get message called ");
+
 		return this.msg;
 	}
 
