@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: zipkin-server
+  profiles:
+  	active: dev
+  cloud:
+    config:
+      uri: http://localhost:8888
+      label: dev,sit,uat,prd
+      failFast: true
+management:
+  security:
+    enabled: false
+  zipkin:
+    locator:
+      discover:
+        enabled: true
+server:

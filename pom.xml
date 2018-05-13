@@ -25,5 +25,6 @@
 		<module>registry</module>
 		<module>gateway</module>
 		<module>config</module>
+		<module>tracing-server</module>
 	</modules>
 </project>
