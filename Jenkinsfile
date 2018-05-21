@@ -32,7 +32,7 @@ pipeline {
 			} catch(e) {
 	    		echo "container ${id} not found"
           	}
-	        DOCKER_IMAGE.run('--name registry -p 8183:8083')
+	        DOCKER_IMAGE.run('--name registry -p 8082:8082')
         }
       }
     }
@@ -72,7 +72,7 @@ pipeline {
 			} catch(e) {
 	    		echo "container ${id} not found"
           	}
-	        DOCKER_IMAGE.run('--name commentstore -p 8180:8180')
+	        DOCKER_IMAGE.run('--name commentstore -p 8080:8080')
         }
       }
     }
@@ -92,7 +92,7 @@ pipeline {
 			} catch(e) {
 	    		echo "container ${id} not found"
           	}
-	        DOCKER_IMAGE.run('--name comsumer -p 8181:8181')
+	        DOCKER_IMAGE.run('--name comsumer -p 8081:8081')
         }
       }
     }

@@ -2,7 +2,7 @@ spring:
   application:
     name: registry
   profiles:
-  	active: dev
+  	active: development
   cloud:
     config:
       uri: http://localhost:8888
