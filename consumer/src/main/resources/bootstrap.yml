@@ -2,11 +2,11 @@ spring:
   application:
     name: consumer
   profiles:
-  	active: dev
+  	active: development
   cloud:
     config:
       uri: http://localhost:8888
-      label: dev,sit,uat,prd
+      label: dev
       failFast: true
 management:
   security:

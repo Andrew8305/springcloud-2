@@ -1,13 +1,18 @@
 spring:
   application:
-    name: commentstore
+    name: zipkin-server
   profiles:
-  	active: development
+  	active: dev
   cloud:
     config:
       uri: http://localhost:8888
-      label: dev
+      label: dev,sit,uat,prd
       failFast: true
 management:
   security:
     enabled: false
+  zipkin:
+    locator:
+      discover:
+        enabled: true
+server:
