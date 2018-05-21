@@ -6,7 +6,7 @@ spring:
   cloud:
     config:
       uri: http://localhost:8888
-      label: dev,sit,uat,prd
+      label: dev
       failFast: true
 management:
   security:
