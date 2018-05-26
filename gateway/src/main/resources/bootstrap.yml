@@ -5,8 +5,8 @@ spring:
   	active: development
   cloud:
     config:
-      uri: http://localhost:8888
-      label: dev,sit,uat,prd
+      uri: http://config:8888
+      label: dev
       failFast: true
 management:
   security:

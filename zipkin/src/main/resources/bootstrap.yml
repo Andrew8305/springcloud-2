@@ -8,7 +8,7 @@ spring:
     config:
      discovery:
       enabled: false
-     uri: http://config-server:8888
+     uri: http://config:8888
      profile: development
      label: dev
 management:

@@ -7,11 +7,11 @@ spring:
     config:
      discovery:
       enabled: false
-     uri: http://config-server:8888
+     uri: http://config:8888
      profile: development
      label: dev
   zipkin:
-    base-url: http://zipkin-server:9411
+    base-url: http://zipkin:9411
     sender:
       type: web
   sleuth:
