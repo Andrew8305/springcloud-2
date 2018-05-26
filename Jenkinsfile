@@ -108,5 +108,25 @@ pipeline {
         }
       }
     }
+    stage('buildzipkin') {
+      steps {
+        script {
+          DOCKER_IMAGE = docker.build("zipkin:latest","./consumer")
+        }
+      }
+    }
+    stage('runzipkin') {
+      steps {
+        script {
+   			try {	
+				id = "zipkin"
+				docker.script.sh "docker stop ${id} && docker rm -f ${id}"
+			} catch(e) {
+	    		echo "container ${id} not found"
+          	}
+	        DOCKER_IMAGE.run('--network cloud --network-alias zipkin --name zipkin -p 9411:9411')
+        }
+      }
+    }
   }
 }
