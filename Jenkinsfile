@@ -17,6 +17,17 @@ pipeline {
         sh 'mvn clean install'
       }
     }
+    stage('createnetwork') {
+      steps {
+        script {
+   			try {	
+				docker.script.sh "docker network create cloud"
+			} catch(e) {
+	    		echo "network cloud already exists"
+          	}
+        }
+      }
+    }
     stage('buildregistry') {
       steps {
         script {
@@ -33,7 +44,7 @@ pipeline {
 			} catch(e) {
 	    		echo "container ${id} not found"
           	}
-	        DOCKER_IMAGE.run('--name registry -p 8082:8082')
+	        DOCKER_IMAGE.run('--network cloud --network-alias registry --name registry -p 8082:8082')
         }
       }
     }
@@ -53,7 +64,7 @@ pipeline {
 			} catch(e) {
 	    		echo "container ${id} not found"
           	}
-	        DOCKER_IMAGE.run('--name config -p 8888:8888')
+	        DOCKER_IMAGE.run('--network cloud --network-alias config --name config -p 8888:8888')
         }
       }
     }
@@ -73,7 +84,7 @@ pipeline {
 			} catch(e) {
 	    		echo "container ${id} not found"
           	}
-	        DOCKER_IMAGE.run('--name commentstore -p 8080:8080')
+	        DOCKER_IMAGE.run('--network cloud --network-alias commentstore --name commentstore -p 8080:8080')
         }
       }
     }
@@ -93,7 +104,7 @@ pipeline {
 			} catch(e) {
 	    		echo "container ${id} not found"
           	}
-	        DOCKER_IMAGE.run('--name comsumer -p 8081:8081')
+	        DOCKER_IMAGE.run('--network cloud --network-alias consumer --name comsumer -p 8081:8081')
         }
       }
     }
