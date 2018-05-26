@@ -33,6 +33,12 @@ public class ConsumerApplication {
 	}
 
 	@Bean
+	public AlwaysSampler alwaysSampler() {
+		return new AlwaysSampler();
+	}
+
+	
+	@Bean
 	@LoadBalanced
 	RestTemplate restTemplate(@Value("${commentstore.auth.user}") String username,
 			@Value("${commentstore.auth.password}") String password, RestTemplateBuilder restTemplateBuilder) {
@@ -43,13 +49,13 @@ public class ConsumerApplication {
 
 	@Bean
 	public Filter logFilter() {
-	    CommonsRequestLoggingFilter filter = new CommonsRequestLoggingFilter();
-	    filter.setIncludeQueryString(true);
-	    filter.setIncludeHeaders(true);
-	    filter.setMaxPayloadLength(5120);
-	    return filter;
+		CommonsRequestLoggingFilter filter = new CommonsRequestLoggingFilter();
+		filter.setIncludeQueryString(true);
+		filter.setIncludeHeaders(true);
+		filter.setMaxPayloadLength(5120);
+		return filter;
 	}
-	
+
 	@Bean
 	CommentService commentService() {
 		return new CommentService();

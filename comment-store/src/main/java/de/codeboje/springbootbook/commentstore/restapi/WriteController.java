@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.actuate.metrics.CounterService;
+import org.springframework.cloud.sleuth.sampler.AlwaysSampler;
+import org.springframework.context.annotation.Bean;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -23,12 +25,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import de.codeboje.springbootbook.commentstore.service.CommentService;
 import de.codeboje.springbootbook.model.CommentModel;
 
-
 @Controller
 public class WriteController {
 
-	private static final Logger LOGGER = LoggerFactory
-			.getLogger(WriteController.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(WriteController.class);
 
 	@Autowired
 	private CommentService service;
@@ -36,11 +36,15 @@ public class WriteController {
 	@Autowired
 	private CounterService counterService;
 
+	@Bean
+	public AlwaysSampler alwaysSampler() {
+		return new AlwaysSampler();
+	}
+
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@ResponseStatus(value = HttpStatus.OK)
 	public @ResponseBody String create(@RequestParam("comment") final String comment,
-			@RequestParam("pageId") final String pageId,
-			@RequestParam("emailAddress") final String emailAddress,
+			@RequestParam("pageId") final String pageId, @RequestParam("emailAddress") final String emailAddress,
 			@RequestParam("username") final String username) throws IOException {
 
 		counterService.increment("commentstore.post");
@@ -53,22 +57,21 @@ public class WriteController {
 		model.setUsername(username);
 
 		String id = service.put(model);
-		
+
 		LOGGER.info("form post done");
-		
+
 		return id;
 	}
-	
+
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(value = HttpStatus.OK)
-	public void delete(@PathVariable(value = "id") String id,
-			HttpServletResponse response) throws IOException {
+	public void delete(@PathVariable(value = "id") String id, HttpServletResponse response) throws IOException {
 		service.delete(id);
 	}
-	
-    @ExceptionHandler(EmptyResultDataAccessException.class)
-    @ResponseStatus(value = HttpStatus.NOT_FOUND)
-    public void handle404(Exception ex, Locale locale) {
-        LOGGER.debug("Resource not found {}", ex.getMessage());
-    }
+
+	@ExceptionHandler(EmptyResultDataAccessException.class)
+	@ResponseStatus(value = HttpStatus.NOT_FOUND)
+	public void handle404(Exception ex, Locale locale) {
+		LOGGER.debug("Resource not found {}", ex.getMessage());
+	}
 }
