@@ -2,12 +2,15 @@ spring:
   application:
     name: zipkin-server
   profiles:
+  	active: development
+  profiles:
   	active: dev
-  cloud:
     config:
-      uri: http://localhost:8888
-      label: dev,sit,uat,prd
-      failFast: true
+     discovery:
+      enabled: false
+     uri: http://config-server:8888
+     profile: development
+     label: dev
 management:
   security:
     enabled: false
