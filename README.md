@@ -37,6 +37,11 @@ All changes I put on top of this original version https://github.com/azarai/spri
 2. Add Swagger UI 
 3. Add Spring Cloud Sleuth and ELK to track business transactions over SPAN's
 
+## OpenID Connect and access management Spring Boot with Keycloak
+
+. read this excellent introduction [Introducing Keycloak for Identity and Access Management](https://www.thomasvitale.com/introducing-keycloak-identity-access-management/)
+. run Keycloak on [Play with Docker](https://labs.play-with-docker.com) with "docker run --name keycloak -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -p 8080:8080 jboss/keycloak"
+
 ## readings
 1. [spring cloud tutorial](http://www.baeldung.com/spring-cloud-tutorial)
 2. [spring cloud io](http://projects.spring.io/spring-cloud/)
