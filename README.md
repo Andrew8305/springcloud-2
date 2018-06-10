@@ -39,8 +39,9 @@ All changes I put on top of this original version https://github.com/azarai/spri
 
 ## OpenID Connect and access management Spring Boot with Keycloak
 
-. read this excellent introduction [Introducing Keycloak for Identity and Access Management](https://www.thomasvitale.com/introducing-keycloak-identity-access-management/)
-. run Keycloak on [Play with Docker](https://labs.play-with-docker.com) with "docker run --name keycloak -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -p 8080:8080 jboss/keycloak"
+1. read this excellent introduction [Introducing Keycloak for Identity and Access Management](https://www.thomasvitale.com/introducing-keycloak-identity-access-management/)
+2. run Keycloak on [Play with Docker](https://labs.play-with-docker.com) with "docker run --name keycloak -e KEYCLOAK_USER=admin -e KEYCLOAK_PASSWORD=admin -p 8080:8080 jboss/keycloak"
+
 
 ## readings
 1. [spring cloud tutorial](http://www.baeldung.com/spring-cloud-tutorial)
