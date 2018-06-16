@@ -1,0 +1,88 @@
+<?xmlversion="1.0" encoding="UTF-8"?>
+
+<configuration>
+
+
+
+	<includeresource = org / springframework / boot /
+		logging / logback / base.xml " />
+
+	<loggername = org.springframework " level="INFO" />
+
+
+
+	<!-- Logstash-Configuration -->
+
+	<appendername = logstash "
+		class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+
+		<destination>elk:4560</destination>
+
+		<encoderclass =
+			net.logstash.logback.encoder.LogstashEncoder ">
+
+			<customFields>{"serviceName":"irs"}</customFields>
+
+			<fieldNames>
+
+				<message>log_message</message>
+
+			</fieldNames>
+
+		</encoder>
+
+			<keepAliveDuration>5 minutes</keepAliveDuration>
+
+		</appender>
+
+
+
+			<!-- Appender to log to console -->
+
+			<appendername = console "
+				class="ch.qos.logback.core.ConsoleAppender">
+
+				<filterclass =
+					ch.qos.logback.classic.filter.ThresholdFilter ">
+
+					<!-- Minimum logging level to be presented in the console logs -->
+
+					<level>DEBUG</level>
+
+				</filter>
+
+					<encoder>
+
+						<pattern>${CONSOLE_LOG_PATTERN}</pattern>
+
+						<charset>utf8</charset>
+
+					</encoder>
+
+				</appender>
+
+
+
+					<rootlevel = INFO ">
+
+						<appender-refref = console " />
+
+						<appender-refref = logstash " />
+
+					</root>
+
+
+
+						<!-- Our logger writes to file, console and sends the data to Logstash -->
+
+						<loggername = com.juliusbaer " level="INFO" additivity="false">
+
+							<appender-refref = logstash " />
+
+							<appender-refref = console " />
+
+						</logger>
+
+
+
+</configuration>
